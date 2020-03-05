@@ -19,7 +19,24 @@ module.exports= {
 		});
 
 
-    },
+	},
+	
+
+	teacherLogin: function(user,callback){
+
+		var sql ="SELECT * FROM teacherreg where temail=? and  	tpass =?";
+		db.getResults(sql, [user.email, user.password], function(results){
+
+			if(results.length > 0){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+
+
+
+	}
 
 
 

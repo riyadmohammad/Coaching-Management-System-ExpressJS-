@@ -35,8 +35,6 @@ router.post('/',function(req,res){
 
                         res.render('signup/teacher_reg.ejs');
 
-                        
-
 
                     }
                     else

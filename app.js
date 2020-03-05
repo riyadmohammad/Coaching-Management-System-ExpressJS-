@@ -18,6 +18,9 @@ var signup =require('./controllers/signup');
 var courses =require('./controllers/courses');
 var notice =require('./controllers/notice');
 var teacher_reg= require('./controllers/teacher_reg');
+var dashbord =require('./controllers/dashbord');
+var create_course=require('./controllers/create_course');
+var view_course=require('./controllers/view_course');
 
 var router =express.Router();
 
@@ -42,6 +45,9 @@ app.use('/signup', signup);
 app.use('/courses', courses);
 app.use('/notice', notice);
 app.use('/teacher_reg', teacher_reg);
+app.use('/dashbord',dashbord);
+app.use('/create_course',create_course);
+app.use('/view_course',view_course);
 
 
 
