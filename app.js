@@ -5,6 +5,9 @@ var express=require('express');
 var bodyParser=require('body-parser');
 var ejs=require('ejs');
 var cookie=require('cookie-parser');
+
+
+
 //var validator=require('express-validator');
 
 
@@ -41,9 +44,11 @@ var app=express();
 
 app.set('view engin','ejs');
 
+
 app.use(bodyParser.urlencoded({extended:true}));
 //app.use(validator());
 app.use(cookie());
+
 
 
 //middlewers

@@ -87,35 +87,29 @@
                                     <th>COURSE ID</th>
                                     <th>COURSE TYPE</th>
                                     <th>BATCH</th>
-                                    <th>DATE</th>
+                                    <th>Class Day</th>
+                                    <th>Class Time</th>
+                                    <th>Subject</th>
                                     <th>FEES</th>
                                     <th>ACTION</th>
                                 </tr>
                                 </thead>
-                            
+                                <% for(var i=0; i < results.length; i++){ %>
                                 <tbody>
                                     <tr>
-                                        <th>1001</th>
-                                        <th>Model Test</th>
-                                        <th>SSC</th>
-                                        <th>2020-02-03</th>
-                                        <th>2500</th>
+                                        <th><%= results[i].cid %></th>
+                                        <th><%= results[i].ctype %></th>
+                                        <th><%= results[i].batch %></th>
+                                        <th><%= results[i].classday %></th>
+                                        <th><%= results[i].classtime %></th>
+                                        <th><%= results[i].subject %></th>
+                                        <th><%= results[i].fees %></th>
                                         <th>
                                             <a href="edit_course.html" class="btn btn-warning">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th>1005</th>
-                                        <th>Regular</th>
-                                        <th>HSC</th>
-                                        <th>2020-01-03</th>
-                                        <th>3500</th>
-                                        <th>
-                                            <a href="edit_course.html" class="btn btn-warning">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </th>
-                                    </tr>
+                                    <%  } %>
                                 </tbody>
                             </table>
                         </div>

@@ -12,10 +12,16 @@ var userModel = require.main.require('./models/user-model');
 });*/
 
 
-router.get('/',function(req,res){
-
-    res.render('view_course/view_course.ejs');
-
+router.get('/', function(req, res){	
+	if(req.cookies['email'] != null){
+		userModel.courseInfo (req.cookies['email'], function(results){
+			console.log(results);
+			console.log('data shows');
+			res.render('view_course/view_course.ejs', {results: results});
+		});
+	}else{
+		res.redirect('/logout');
+	}
 });
 
 

@@ -28,6 +28,8 @@ router.post('/',function(req,res){
 			day:req.body.day,
 			time:req.body.myTime,
 			fees:req.body.fees,
+			subject:req.body.subject,
+			email:req.cookies['email'],
 
 
 

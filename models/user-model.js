@@ -85,8 +85,8 @@ courseInsert:function(course_data,callback){
 
 
 
-	var sql = "insert into courses values(?,?,?,?,?,?)";
-	db.execute(sql, [null, course_data.type,course_data.batch,course_data.fees,course_data.time,course_data.day], function(status){
+	var sql = "insert into courses values(?,?,?,?,?,?,?,?)";
+	db.execute(sql, [null, course_data.type,course_data.batch,course_data.fees,course_data.time,course_data.day,course_data.subject,course_data.email ],function(status){
 		if(status){
 			callback(true);
 		}else{
@@ -97,6 +97,73 @@ courseInsert:function(course_data,callback){
 
 },
 
+
+courseInfo:function(email, callback){
+
+	var sql = "select * from courses where temail= ?";
+	db.getResults(sql, [email],function(results){
+		if(results){
+			callback(results);
+			console.log(results);
+			console.log('dada nai');
+		   
+		}
+		else{
+			callback([]);
+
+		}
+	});
+	
+},
+
+
+
+
+noticeInsert:function(notice_data,callback){
+
+	console.log(notice_data);
+	console.log('data recive');
+
+
+
+	var sql = "insert into notice values(?,?,?,?,?,?)";
+	db.execute(sql, [null,notice_data.topic,notice_data.details,notice_data.date,notice_data.adminid, notice_data.id],function(status){
+		if(status){
+			callback(true);
+		}else{
+			callback(false);
+		}
+	});
+
+
+},
+
+
+
+
+
+
+
+
+
+noteInsert:function(note_data,callback){
+
+	console.log(note_data);
+	console.log('data recive');
+
+
+
+	var sql = "insert into notes values(?,?,?,?,?,?)";
+	db.execute(sql, [null,notice_data.topic,notice_data.details,notice_data.date,notice_data.adminid, notice_data.id],function(status){
+		if(status){
+			callback(true);
+		}else{
+			callback(false);
+		}
+	});
+
+
+},
 
 
 
