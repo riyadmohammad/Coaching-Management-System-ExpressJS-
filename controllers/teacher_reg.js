@@ -25,6 +25,7 @@ router.post('/',function(req,res){
                 password: req.body.password,
                 phoneNo :req.body.TPhoneNumber,
                 qualification: req.body.qualification_details,
+                satus:'yas',
 
             };
 
@@ -33,7 +34,7 @@ router.post('/',function(req,res){
 
                     if(status){
 
-                        res.render('signup/teacher_reg.ejs');
+                        res.render('login/login.ejs');
 
 
                     }

@@ -22,7 +22,7 @@ router.post('/', function(req,res){
 
 
         email:req.body.email,
-        password:req.body,password,
+        password:req.body.password,
 
 
 

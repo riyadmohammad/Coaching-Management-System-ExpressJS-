@@ -20,13 +20,13 @@
                 </div>
                 <ul>
                     <li>
-                        <h5>Teacher Name</h5>
+                        <h5>Teacher Name: <%= results[0].tname %> </h5>
                     </li>
                     <li>
                         <a href="" class="btn-primary"><i class="fas fa-bell"></i></a>
                     </li>
                     <li>
-                        <a href="index.html" class="n-btn"> Logout </a>
+                        <a href="/logout" class="n-btn"> Logout </a>
                     </li>
                 </ul>
             </nav>
@@ -66,7 +66,7 @@
                         <i class="fas fa-users"></i> <a href="/notice_upload">Notice Upload</a>
                     </li>
                     <li>
-                        <i class="fas fa-users"></i> <a href="/marks_entry">Create Marks</a>
+                        <i class="fas fa-users"></i> <a href="/mark">Create Marks</a>
                     </li>
                     <li>
                         <i class="fas fa-hands-helping"></i> <a href="/alert_parent">Alert Parents</a>
@@ -79,20 +79,20 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <h1 class="mt-5">Teachers Info</h1>
-                            <form class="mt-5">
+                            <form class="mt-5" method="post">
                                 <div class="form-group">
                                   <label for="name">Name</label>
-                                  <input type="text" class="form-control" id="name" placeholder="">
+                                  <input type="text" class="form-control" name="name" id="name" VALUE="<%= results[0].tname %>" >
                                 </div>
                                 <div class="form-group">
                                   <label for="email1">Email address</label>
-                                  <input type="email" class="form-control" id="email1" placeholder="">
+                                  <input type="email" class="form-control" name="email" id="email1" placeholder="" VALUE="<%= results[0].temail %>" readonly >
                                 </div>
                                 <div class="form-group">
                                   <label for="pass">Password</label>
-                                  <input type="password" class="form-control" id="pass" placeholder="Password">
+                                  <input type="password" name="password" class="form-control" id="pass" placeholder="">
                                 </div>
-                                <a href="" class="btn btn-warning"> Edit</a>
+                                <!-- <a href="" class="btn btn-warning"> Edit</a> -->
                                 <button type="submit" class="btn btn-success">Update</button>
                               </form>
                         </div>

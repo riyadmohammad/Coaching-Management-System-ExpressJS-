@@ -18,6 +18,36 @@ router.get('/',function(req,res){
 
 });
 
+router.post('/',function(req,res){
+
+
+	var course_data={
+
+			type:req.body.courseType,
+			batch:req.body.batchType,
+			day:req.body.day,
+			time:req.body.myTime,
+			fees:req.body.fees,
+
+
+
+	}
+
+
+	userModel.courseInsert(course_data, function(status){
+		if(status){
+		   
+		   res.redirect('/dashbord');
+	   }else{
+		   res.send('/create_course');
+	   }
+   });
+
+
+
+
+});
+
 
 
 
