@@ -96,19 +96,22 @@
                                 </thead>
                                 <% for(var i=0; i < results.length; i++){ %>
                                 <tbody>
-                                    <tr>
-                                        <th><%= results[i].cid %></th>
-                                        <th><%= results[i].ctype %></th>
-                                        <th><%= results[i].batch %></th>
-                                        <th><%= results[i].classday %></th>
-                                        <th><%= results[i].classtime %></th>
-                                        <th><%= results[i].subject %></th>
-                                        <th><%= results[i].fees %></th>
-                                        <th>
-                                            <a href="edit_course.html" class="btn btn-warning">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-                                        </th>
-                                    </tr>
+                                    <form action="" method="post"> 
+                                        <tr>
+                                            <th> <input type="text" class="form-control" name="id" id="id" placeholder="" VALUE="<%= results[i].cid %>" readonly ></th>
+                                            <th> <input type="text" class="form-control" name="type" id="type" placeholder="" VALUE="<%= results[i].ctype %>" >  </th>
+                                            <th>  <input type="text" class="form-control" name="batch" id="batch" placeholder="" VALUE="<%= results[i].batch %>" ></th>
+                                            <th><input type="text" class="form-control" name="day" id="day" placeholder="" VALUE="<%= results[i].classday %>"> </th>
+                                            <th> <input type="time" class="form-control" name="time" id="time" placeholder="" VALUE="<%= results[i].classtime %>"> </th>
+                                            <th> <input type="text" class="form-control" name="subject" id="subject" placeholder="" VALUE="<%= results[i].subject %>"> </th>
+                                            <th>   <input type="text" class="form-control" name="fees" id="fees" placeholder="" VALUE="<%= results[i].fees %>"></th>
+                                            <th>
+                                                <input class="btn btn-warning"type="submit" value="edit" >
+                                                <a href="" class="btn btn-danger">Delete</a>
+                                            </th>
+                                        </tr>
+                                    </form>
+                                    
                                     <%  } %>
                                 </tbody>
                             </table>

@@ -27,6 +27,43 @@ router.get('/', function(req, res){
 
 
 
+router.post('/', function(req,res){
+
+	var edite_data={
+
+			id:req.body.id,
+			type:req.body.type,
+			batch:req.body.batch,
+			day:req.body.day,
+			time:req.body.time,
+			subject:req.body.subject,
+			fees:req.body.fees,
+			
+
+	};
+
+
+
+	console.log(edite_data);
+	console.log('update DATA'),
+
+        userModel.courseUpdate(edite_data, function(status){
+            if(status){
+               
+               res.redirect('/dashbord');
+           }else{
+               res.send('/');
+           }
+       });
+
+
+
+
+});
+
+
+
+
 
 
 

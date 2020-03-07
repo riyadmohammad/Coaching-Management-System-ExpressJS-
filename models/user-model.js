@@ -126,6 +126,36 @@ courseInsert:function(course_data,callback){
 },
 
 
+courseUpdate: function(edite_data,callback){
+
+
+	console.log(edite_data);
+	console.log('data recive');
+  
+	var sql = "UPDATE courses SET ctype=?,batch=?,fees=?,classtime=?,classday=?,subject=?  where cid=?";
+	db.execute(sql, [edite_data.type,edite_data.batch,edite_data.fees,edite_data.time,edite_data.day,edite_data.subject,edite_data.id], function(results){
+		if(results){
+			console.log('update DATA nai'),
+			callback(true);
+		   
+		}
+		else{
+
+			callback(false);
+		}
+	});
+},
+
+
+
+
+
+
+
+
+
+
+
 courseInfo:function(email, callback){
 
 	var sql = "select * from courses where temail= ?";
