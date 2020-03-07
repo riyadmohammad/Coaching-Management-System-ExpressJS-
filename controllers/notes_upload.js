@@ -4,60 +4,19 @@ var userModel = require.main.require('./models/user-model');
 
 
 
+
+
 var multer = require('multer');
 
-
-const storage = multer.diskStorage({
-    destination: './uploads',
-    filename: function(req, file, callback){
-        callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname)
     }
-});
-
-
-
-
-
-var upload = multer({
-    storage : storage
-   // limits:{fileSize: 1000000},
-    
-
-}).single('myImage');
-
-
-
-
-// var multer=require('multer');
-
-
-// var storage = multer.diskStorage({
-// 	destination: function (req, file, callback) {
-// 	  callback(null, 'uploads/')
-// 	},
-// 	filename: function (req, file, callback) {
-// 	  callback(null, Date.now() + file.originalname)
-// 	}
-//   })
-  
-//   var upload = multer({ storage: storage })
-
-
-/*router.get('*', function(req, res, next){
-	if(req.cookies['email'] == null){
-		res.redirect('/login');
-	}else{
-		next();
-	}
-});*/
-
-
-// router.get('/',function(req,res){
-
-//     res.render('noteup/notes_upload.ejs');
-
-// });
-
+  })
+var upload = multer({ storage: storage });
 
 
 router.get('/', function(req, res){	
@@ -72,76 +31,57 @@ router.get('/', function(req, res){
 	}
 });
 
+router.post('/',upload.single('fileForUp'),function(req, res) {
 
-// router.post('/',function(req,res){
 
 
-// 	if(req.cookies['email'] != null){
-// 		userModel.teacherInfo (req.cookies['email'], function(results){
+   
+    if(req.cookies['email'] != null){
+		userModel.teacherInfo (req.cookies['email'], function(results){
 
-//                 if(results.length!=null){
+                if(results.length!=null){
 
                     
-//     var noote_data={
+   
+                var ninfo = {
+                    filename: req.file.filename,
+                    courseid: req.body.courseid,
+                    id:results[0].tid,
+                    title:'files',
+                    aid:'',
 
-       
+                }
 
+        console.log(ninfo);
 
-        
-//         };
+        userModel.uploadFile(ninfo,function(status){
+            if(status){
+                 res.redirect('/notes_upload');
+            }else{
+                 res.redirect('/dashbord');
+          
+                }
+       });
+   
+   
 
-//         console.log(noote_data);
+    }
 
-//         userModel.noteInsert(noote_data, function(status){
-//             if(status){
-               
-//                res.redirect('/dashbord');
-//            }else{
-//                res.send('/');
-//            }
-//        });
+                else{
 
-
-
-
-
-
-
-
-
-//                 }
-
-//                 else{
-
-//                     res.redirect('/notice_upload');
+                    res.redirect('/notice_upload');
 
 
-//                 }
+                }
 
             
-//     });
-              
-// 	}
-
-
-
-
-
-
-
-
-
-
-// });
-
-
-// router.post('/upload', upload.single('fileForUp'), function(req, res, next) {
-// 	var fileinfo = req.file;
-// 	var title = req.body.title;
-// 	console.log(title);
-// 	res.send(fileinfo);
-//   });
-
+    
+            })
+        
+        }
+});
+        
+      
 
 
 
@@ -149,7 +89,7 @@ router.get('/', function(req, res){
 router.post('/upload', (req, res) => {
     upload(req, res, (err) => {
         if(err){
-            res.render('index',{
+            res.render('/dashbord',{
                 msg: err
             });
         }
@@ -159,13 +99,13 @@ router.post('/upload', (req, res) => {
 
             if(req.file == undefined){
                 res.render('/dashbord',{
-                    msg: 'Error:  No file Selected!'
+                    msg: 'Error:  No file Selected!',
                 });
             }
             else{
                 res.render('/dashbord',{
                     msg: 'File Uploaded',
-                    file: `uploads/${req.file.filename}`
+                    file: `uploads/${req.file.filename}`,
                 });
             }
         }
@@ -173,8 +113,7 @@ router.post('/upload', (req, res) => {
 });
 
 
-
-
-
+    
+    
 
 module.exports = router;

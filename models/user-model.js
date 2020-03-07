@@ -278,6 +278,30 @@ studentInfo:function(callback){
 
 
 
+
+uploadFile:function(ninfo,callback){
+
+	console.log(ninfo);
+	console.log('upload data recive');
+
+
+
+	var sql = "insert into notes values(?,?,?,?,?)";
+	db.execute(sql, [null,ninfo.title,ninfo.filename,ninfo.aid,ninfo.id],function(status){
+		if(status){
+			callback(true);
+		}else{
+			callback(false);
+		}
+	});
+
+
+},
+
+
+
+
+
    
 	
 
