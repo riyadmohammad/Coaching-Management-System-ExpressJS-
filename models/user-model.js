@@ -147,6 +147,31 @@ courseUpdate: function(edite_data,callback){
 },
 
 
+courseDelete:function(id,callback){
+
+
+
+	var sql = "DELETE FROM courses WHERE cid=?";
+	db.execute(sql, [id.id], function(results){
+		if(results){
+			console.log('udelet hoi nai'),
+			callback(true);
+		   
+		}
+		else{
+
+			callback(false);
+		}
+	});
+
+
+
+
+
+
+},
+
+
 
 
 

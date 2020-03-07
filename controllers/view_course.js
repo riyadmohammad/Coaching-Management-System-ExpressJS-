@@ -50,11 +50,31 @@ router.post('/', function(req,res){
         userModel.courseUpdate(edite_data, function(status){
             if(status){
                
-               res.redirect('/dashbord');
+               res.redirect('/view_course');
            }else{
                res.send('/');
            }
        });
+
+
+
+
+});
+
+
+
+router.get('/delete/:id',function(req,res){
+
+    var id={id:req.params.id};
+
+    userModel.courseDelete(id, function(status){
+        if(status){
+           
+           res.redirect('/view_course');
+       }else{
+           res.send('/view_course');
+       }
+   });
 
 
 

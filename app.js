@@ -35,6 +35,7 @@ var msg=require('./controllers/msg');
 
 
 
+
 var router =express.Router();
 
 var app=express();
@@ -71,6 +72,7 @@ app.use('/mark',mark);
 app.use('/alert_parent',alert_parent);
 app.use('/logout',logout);
 app.use('/msg',msg);
+
 
 
 
