@@ -23,6 +23,34 @@ module.exports= {
 
 
 
+	studentInsert: function(student_data,callback){
+
+
+
+        var sql = "insert into studentreg values(?,?,?,?,?,?,?,?,?,?)";
+		db.execute(sql, [null,student_data.name,student_data.school,student_data.email,student_data.password,student_data.sphoneNo,student_data.pname,student_data.ppnoneNo,student_data. spemail,student_data.status], function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+
+
+	},
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	teacherLogin: function(user,callback){
 
@@ -164,6 +192,33 @@ noteInsert:function(note_data,callback){
 
 
 },
+
+
+
+
+
+
+
+
+
+studentInfo:function(callback){
+	var sql = "SELECT * FROM `studentreg`";
+	db.getResults(sql,null, function(results){
+		if(results){
+			callback(results);
+			console.log('data ache');
+			
+		   
+		}
+		else{
+			callback([]);
+			console.log('data nai');
+
+		}
+	});
+	
+},
+
 
 
 

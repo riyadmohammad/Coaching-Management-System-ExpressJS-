@@ -2,19 +2,45 @@ var express = require('express');
 var router = express.Router();
 var userModel = require.main.require('./models/user-model');
 
-var multer=require('multer');
 
 
-var storage = multer.diskStorage({
-	destination: function (req, file, callback) {
-	  callback(null, 'uploads/')
-	},
-	filename: function (req, file, callback) {
-	  callback(null, Date.now() + file.originalname)
-	}
-  })
+var multer = require('multer');
+
+
+const storage = multer.diskStorage({
+    destination: './uploads',
+    filename: function(req, file, callback){
+        callback(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+
+
+
+
+var upload = multer({
+    storage : storage
+   // limits:{fileSize: 1000000},
+    
+
+}).single('myImage');
+
+
+
+
+// var multer=require('multer');
+
+
+// var storage = multer.diskStorage({
+// 	destination: function (req, file, callback) {
+// 	  callback(null, 'uploads/')
+// 	},
+// 	filename: function (req, file, callback) {
+// 	  callback(null, Date.now() + file.originalname)
+// 	}
+//   })
   
-  var upload = multer({ storage: storage })
+//   var upload = multer({ storage: storage })
 
 
 /*router.get('*', function(req, res, next){
@@ -109,13 +135,42 @@ router.get('/', function(req, res){
 // });
 
 
-router.post('/upload', upload.single('fileForUp'), function(req, res, next) {
-	var fileinfo = req.file;
-	var title = req.body.title;
-	console.log(title);
-	res.send(fileinfo);
-  });
+// router.post('/upload', upload.single('fileForUp'), function(req, res, next) {
+// 	var fileinfo = req.file;
+// 	var title = req.body.title;
+// 	console.log(title);
+// 	res.send(fileinfo);
+//   });
 
+
+
+
+
+router.post('/upload', (req, res) => {
+    upload(req, res, (err) => {
+        if(err){
+            res.render('index',{
+                msg: err
+            });
+        }
+        else{
+            // console.log(req.file);
+            // res.send('test');
+
+            if(req.file == undefined){
+                res.render('/dashbord',{
+                    msg: 'Error:  No file Selected!'
+                });
+            }
+            else{
+                res.render('/dashbord',{
+                    msg: 'File Uploaded',
+                    file: `uploads/${req.file.filename}`
+                });
+            }
+        }
+    })
+});
 
 
 

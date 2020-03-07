@@ -31,6 +31,7 @@ var notice_upload=require('./controllers/notice_upload');
 var mark=require('./controllers/mark');
 var alert_parent=require('./controllers/alert_parent');
 var logout=require('./controllers/logout');
+var msg=require('./controllers/msg');
 
 
 
@@ -69,6 +70,7 @@ app.use('/notice_upload',notice_upload);
 app.use('/mark',mark);
 app.use('/alert_parent',alert_parent);
 app.use('/logout',logout);
+app.use('/msg',msg);
 
 
 

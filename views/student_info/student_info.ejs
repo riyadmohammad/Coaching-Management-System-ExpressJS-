@@ -97,22 +97,16 @@
                                     <th>ACTION</th>
                                 </tr>
                                 </thead>
-
+                                <% for(var i=0; i < results.length; i++){ %>
                                 <tbody>
                                     <tr>
-                                        <th>8001</th>
-                                        <th>Student Name</th>
+                                        <th><%= results[i].sid %></th>
+                                        <th><%= results[i].sname %></th>
                                         <th>
                                             <a href="student_info_edited.html" class="btn btn-warning">Edit/View</a>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <th>8002</th>
-                                        <th>Student Name</th>
-                                        <th>
-                                            <a href="student_info_edited.html" class="btn btn-warning">Edit/View</a>
-                                        </th>
-                                    </tr>
+                                    <%  } %>
                                 </tbody>
                             </table>
                         </div>
