@@ -34,7 +34,7 @@ router.post('/',function(req,res){
 
                     if(status){
 
-                        res.render('login/login.ejs');
+                        res.redirect('/login');
 
 
                     }

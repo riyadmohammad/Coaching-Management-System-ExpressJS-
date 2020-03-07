@@ -301,6 +301,28 @@ uploadFile:function(ninfo,callback){
 
 
 
+markup:function(marks,callback){
+
+	console.log(marks);
+	console.log('upload data recive');
+
+
+
+	var sql = "INSERT INTO results values(?,?,?,?,?,?)";
+	db.execute(sql, [null,marks.xmName,marks.xm,marks.mark,marks.id,marks.cid],function(status){
+		if(status){
+			callback(true);
+		}else{
+			callback(false);
+		}
+	});
+
+
+},
+
+
+
+
 
    
 	

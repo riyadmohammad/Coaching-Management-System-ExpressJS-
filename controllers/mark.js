@@ -13,5 +13,36 @@ router.get('/',function(req,res){
 });
 
 
+router.post('/',function(req,res){
+
+
+    var marks={
+            xm:req.body.examType,
+            xmName:req.body.examName,
+            cid:req.body.courseId,
+            id:req.body.user,
+            mark:req.body.marks,
+    };
+    
+    userModel.markup(marks, function(status){
+        if(status){
+
+            console.log(marks);
+            console.log("data recive");
+           
+           res.redirect('/mark');
+       }else{
+        res.redirect('/dashbord');
+          
+       }
+   });
+
+
+
+
+
+});
+
+
 
 module.exports = router;
